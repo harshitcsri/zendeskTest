@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const port = 3000
 let bodyParser = require('body-parser');
-const fetch = require("node-fetch");
+const fetch = require('node-fetch');
 globalThis.fetch = fetch
 app.use(bodyParser.json());
 app.use(express.urlencoded({
