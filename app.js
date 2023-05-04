@@ -14,16 +14,21 @@ app.post('/getData', async (req, res) => {
     let ticket_ID = req.body.Ticket_ID;
     let assignee_ID = req.body.Assignee_ID;
     console.log("TicketID", ticket_ID)
+    console.log("AssigneeID",assignee_ID);
+
     if (ticket_ID != null && assignee_ID != null) {
         await fetch(`https://pdi-xoogle.zendesk.com/api/v2/agent_availabilities/${assignee_ID}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Basic ' + Buffer.from('harshit@xoogle.in:Harshit#245')
+                'Authorization': 'Basic ' + Buffer.from('harshit@xoogle.in:Harshit#245', 'binary').toString('base64')
             },
         }).then(response => response.text())
             .then((data) => {
                 data = JSON.parse(data);
+
+                console.log("Data",data);
+
                 let isAgent = data.data.attributes.agent_status.name;
 
                 if (isAgent == "offline") {
@@ -31,7 +36,7 @@ app.post('/getData', async (req, res) => {
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json',
-                            'Authorization': 'Basic ' + Buffer.from('harshit@xoogle.in:Harshit#245')
+                            'Authorization': 'Basic ' + Buffer.from('harshit@xoogle.in:Harshit#245', 'binary').toString('base64')
                         },
                         body: JSON.stringify({
                             "ticket":
