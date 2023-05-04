@@ -19,7 +19,7 @@ app.post('/getData', async (req, res) => {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Basic ' + btoa('harshit@xoogle.in:Harshit#245')
+                'Authorization': 'Basic ' + Buffer.from('harshit@xoogle.in:Harshit#245')
             },
         }).then(response => response.text())
             .then((data) => {
@@ -31,7 +31,7 @@ app.post('/getData', async (req, res) => {
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json',
-                            'Authorization': 'Basic ' + btoa('harshit@xoogle.in:Harshit#245')
+                            'Authorization': 'Basic ' + Buffer.from('harshit@xoogle.in:Harshit#245')
                         },
                         body: JSON.stringify({
                             "ticket":
